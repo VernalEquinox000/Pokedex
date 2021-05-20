@@ -2,27 +2,32 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Sphere from "../../assets/poke.png";
 
 export default function Home() {
+  const [url, setUrl] = useState(
+    `https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20`
+  );
   const [amount, setAmount] = useState(0);
   const [pokemons, setPokemons] = useState([]);
-  let [myPokemons, setMyPokemons] = useState([]);
+  const [myPokemons, setMyPokemons] = useState([]);
 
-  const url = "https://pokeapi.co/api/v2/pokemon/?limit=1118";
-
-  const fetchPokemons = async (url) => {
+  const fetchPokemons = async () => {
     const response = await axios.get(url);
     const data = await response.data;
     console.log(data);
     setAmount(data.count);
     const fetchedPokemons = data.results;
-    const sortedPokemons = fetchedPokemons.sort((a, b) => {
-      if (a.name < b.name) return -1;
-      else if (a.name > b.name) return 1;
-      else return 0;
-    });
-
-    setPokemons(sortedPokemons);
+    if (url.includes("limit=1118")) {
+      const sortedPokemons = fetchedPokemons.sort((a, b) => {
+        if (a.name < b.name) return -1;
+        else if (a.name > b.name) return 1;
+        else return 0;
+      });
+      setPokemons(sortedPokemons);
+    } else {
+      setPokemons(fetchedPokemons);
+    }
   };
 
   const addToMyList = (obj) => {
@@ -50,7 +55,15 @@ export default function Home() {
       <Container>
         <Row className="mt-5">
           <Col>
-            <Button variant="primary" onClick={() => fetchPokemons(url)}>
+            <Button
+              variant="primary"
+              onClick={() => {
+                setUrl(
+                  "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1118"
+                );
+                fetchPokemons();
+              }}
+            >
               Show All A-Z
             </Button>
           </Col>
@@ -74,10 +87,12 @@ export default function Home() {
               pokemons
                 .map((poke) => (
                   <p className="pokelist" key={poke.url.slice(34, -1)}>
+                    <img src={Sphere} style={{ width: "30px" }} alt="poke_sp" />
+                    {"  "}
                     <Link to={{ pathname: `/${poke.url.slice(34, -1)}` }}>
                       {poke.name}
-                      {"  "}
                     </Link>
+                    {"  "}
                     <Button
                       variant={
                         isCaught(poke.url.slice(34, -1)) ? "success" : "danger"
