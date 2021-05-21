@@ -36,7 +36,9 @@
     transform: rotate(360deg);
   }
 }
-
+.poke-wrap {
+  border: 1px solid red;
+}
 .pokelist {
   font-size: 20px;
   border: 1px solid black;

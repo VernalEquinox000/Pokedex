@@ -82,17 +82,26 @@ export default function Home() {
           <h4>{amount} pokemons found!</h4>
         </Row>
         <Row className="row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 my-5">
-          <Col>
-            {pokemons &&
-              pokemons
-                .map((poke) => (
-                  <p className="pokelist" key={poke.url.slice(34, -1)}>
+          {pokemons &&
+            pokemons
+              .map((poke) => (
+                <Col
+                  className="m-0"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignContent: "space-between",
+                  }}
+                >
+                  <div className="poke-wrap mb-2" style={{ width: "100%" }}>
                     <img src={Sphere} style={{ width: "30px" }} alt="poke_sp" />
-                    {"  "}
-                    <Link to={{ pathname: `/${poke.url.slice(34, -1)}` }}>
-                      {poke.name}
-                    </Link>
-                    {"  "}
+                    <span className="pokelist" key={poke.url.slice(34, -1)}>
+                      {"  "}
+                      <Link to={{ pathname: `/${poke.url.slice(34, -1)}` }}>
+                        {poke.name}
+                      </Link>
+                      {"  "}
+                    </span>
                     <Button
                       variant={
                         isCaught(poke.url.slice(34, -1)) ? "success" : "danger"
@@ -105,10 +114,11 @@ export default function Home() {
                         ? "You got me!"
                         : "Catch me!"}
                     </Button>
-                  </p>
-                ))
-                .slice(0, 200)}
-          </Col>
+                  </div>
+                </Col>
+              ))
+              .slice(0, 200)}
+
           <Col>
             {pokemons &&
               pokemons
