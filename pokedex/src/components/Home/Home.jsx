@@ -86,35 +86,40 @@ export default function Home() {
             pokemons
               .map((poke) => (
                 <Col
-                  className="m-0"
                   style={{
+                    padding: "0px",
+                    marginRight: "5px",
+                    marginBottom: "5px",
+                    marginTop: "0px",
+                    border: "1px solid red",
                     display: "flex",
                     justifyContent: "space-between",
                     alignContent: "space-between",
+                    width: "20rem",
                   }}
                 >
-                  <div className="poke-wrap mb-2" style={{ width: "100%" }}>
-                    <img src={Sphere} style={{ width: "30px" }} alt="poke_sp" />
-                    <span className="pokelist" key={poke.url.slice(34, -1)}>
-                      {"  "}
-                      <Link to={{ pathname: `/${poke.url.slice(34, -1)}` }}>
-                        {poke.name}
-                      </Link>
-                      {"  "}
-                    </span>
-                    <Button
-                      variant={
-                        isCaught(poke.url.slice(34, -1)) ? "success" : "danger"
-                      }
-                      value={poke.url.slice(34, -1)}
-                      disabled={isCaught(poke.url.slice(34, -1)) ? true : false}
-                      onClick={() => addToMyList(poke)}
-                    >
-                      {isCaught(poke.url.slice(34, -1))
-                        ? "You got me!"
-                        : "Catch me!"}
-                    </Button>
-                  </div>
+                  {/* <div className="poke-wrap mb-2" style={{ width: "100%" }}> */}
+                  <img src={Sphere} style={{ width: "30px" }} alt="poke_sp" />
+                  <span className="pokelist" key={poke.url.slice(34, -1)}>
+                    {"  "}
+                    <Link to={{ pathname: `/${poke.url.slice(34, -1)}` }}>
+                      {poke.name}
+                    </Link>
+                    {"  "}
+                  </span>
+                  <Button
+                    variant={
+                      isCaught(poke.url.slice(34, -1)) ? "success" : "danger"
+                    }
+                    value={poke.url.slice(34, -1)}
+                    disabled={isCaught(poke.url.slice(34, -1)) ? true : false}
+                    onClick={() => addToMyList(poke)}
+                  >
+                    {isCaught(poke.url.slice(34, -1))
+                      ? "You got me!"
+                      : "Catch me!"}
+                  </Button>
+                  {/* </div> */}
                 </Col>
               ))
               .slice(0, 200)}
