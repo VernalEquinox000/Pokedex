@@ -81,17 +81,25 @@ export default function Home() {
         <Row className="my-5">
           <h4>{amount} pokemons found!</h4>
         </Row>
-        <Row className="row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 my-5">
+        <Row
+          className="row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 my-5 row-no-gutters"
+          style={{
+            display: "flex",
+            justifyContent: "between",
+            border: "1px solid black",
+          }}
+        >
           {pokemons &&
             pokemons
               .map((poke) => (
                 <Col
+                  key={poke.url.slice(34, -1)}
                   style={{
-                    padding: "0px",
-                    marginRight: "5px",
+                    padding: "auto",
+
                     marginBottom: "5px",
                     marginTop: "0px",
-                    border: "1px solid red",
+                    marginRight: "auto",
                     display: "flex",
                     justifyContent: "space-between",
                     alignContent: "space-between",
@@ -99,8 +107,8 @@ export default function Home() {
                   }}
                 >
                   {/* <div className="poke-wrap mb-2" style={{ width: "100%" }}> */}
-                  <img src={Sphere} style={{ width: "30px" }} alt="poke_sp" />
-                  <span className="pokelist" key={poke.url.slice(34, -1)}>
+                  <img src={Sphere} style={{ width: "10%" }} alt="poke_sp" />
+                  <span className="pokelist">
                     {"  "}
                     <Link to={{ pathname: `/${poke.url.slice(34, -1)}` }}>
                       {poke.name}
