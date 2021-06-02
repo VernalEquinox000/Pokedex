@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -46,16 +46,15 @@ export default function Home() {
         : false
       : false;
 
-  /* const fetchMyList = () =>
-    {
-        
-        } */
+  useEffect(() => {
+    fetchPokemons();
+  }, pokemons);
 
   return (
     <>
       <Container>
         <Row className="mt-5">
-          <Col>
+          {/* <Col>
             <Button
               variant="primary"
               onClick={() => {
@@ -67,7 +66,7 @@ export default function Home() {
             >
               Show All A-Z
             </Button>
-          </Col>
+          </Col> */}
           {/* <Col>
             <Button variant="secondary" onClick={() => fetchMyList()}>
               My List
@@ -83,7 +82,7 @@ export default function Home() {
           <h4>{amount} pokemons found!</h4>
         </Row>
         <Row>
-          <Search pokemons={pokemons} />
+          <Search pokemons={{ pokemons }} />
         </Row>
         <Row
           className="row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 my-5 row-no-gutters"

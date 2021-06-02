@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { Form, FormControl, Button } from "react-bootstrap";
 
-export default function Search(pokemons) {
+export default function Search({ pokemons }) {
   const [searchString, setSearchString] = useState("");
   const [searchedPoke, setSearchedPoke] = useState([]);
   const [searchedLoading, setSearchedLoading] = useState(null);
 
   const showSearchResult = (searchString) => {
     setSearchedLoading(true);
+    pokemons.filter((poke) => {
+      if (poke.name.contains(searchString)) {
+        setSearchedPoke(searchedPoke.concat(poke.name));
+      }
+    });
   };
 
   const handleEnterKey = () => {
@@ -39,6 +44,8 @@ export default function Search(pokemons) {
           Search
         </Button>
       </Form>
+
+      <p>{searchedPoke}</p>
     </div>
   );
 }
