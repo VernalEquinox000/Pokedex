@@ -9,6 +9,11 @@ export default function Search(pokemons) {
   const showSearchResult = (searchString) => {
     setSearchedLoading(true);
   };
+
+  const handleEnterKey = () => {
+    showSearchResult(searchString);
+  };
+
   const searchStringHandler = (e) => {
     if (e.keyCode === 13 || e.key === "Enter") {
       showSearchResult(searchString);
@@ -30,7 +35,9 @@ export default function Search(pokemons) {
           value={searchString}
           className="mr-sm-2"
         />
-        <Button variant="outline-success">Search</Button>
+        <Button variant="outline-success" onClick={handleEnterKey}>
+          Search
+        </Button>
       </Form>
     </div>
   );
