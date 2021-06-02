@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Pokemon from "../../assets/pokemon_logo.png";
 
 export default function NavigationBar() {
+  const [searchString, setSearchString] = useState("");
+
+  const searchStringHandler = (e) => {
+    if (e.keyCode === 13 || e.key === "Enter") {
+      //showSearchResult(searchString)
+    }
+  };
+
+  const [searchedPoke, setSearchedPoke] = useState([]);
+  const [searchedLoading, setSearchedLoading] = useState(null);
+
+  const showSearchResult = (searchString) => {
+    setSearchedLoading(true);
+  };
   return (
     <>
       <Navbar

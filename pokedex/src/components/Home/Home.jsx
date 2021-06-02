@@ -3,6 +3,7 @@ import axios from "axios";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Sphere from "../../assets/poke.png";
+import Search from "../Search/Search";
 
 export default function Home() {
   const [url, setUrl] = useState(
@@ -80,6 +81,9 @@ export default function Home() {
         </Row>
         <Row className="my-5">
           <h4>{amount} pokemons found!</h4>
+        </Row>
+        <Row>
+          <Search pokemons={pokemons} />
         </Row>
         <Row
           className="row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 my-5 row-no-gutters"

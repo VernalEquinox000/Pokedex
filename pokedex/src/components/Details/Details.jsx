@@ -14,7 +14,7 @@ export default function Details() {
     const data = await response.data;
     console.log(data);
     setPokemon(data);
-    console.log(pokemon.abilities[0].ability.name);
+    /* console.log(pokemon.abilities[0].ability.name); */
   };
 
   const isCaught = () => {
@@ -25,7 +25,7 @@ export default function Details() {
   useEffect(() => {
     fetchPokemon(matchParams.pokemonId);
     isCaught();
-  }, []);
+  }, [pokemon]);
 
   return (
     <div>
@@ -49,8 +49,8 @@ export default function Details() {
                 location area encounters:{" "}
                 <a href={pokemon.location_area_encounters}>link</a>
                 <br />
-                ability #1: {pokemon.abilities[0].ability.name} <br />
-                ability #2: {pokemon.abilities[1].ability.name}
+                {/* ability #1: {pokemon.abilities[0].ability.name} <br />
+                ability #2: {pokemon.abilities[1].ability.name} */}
               </p>
             </Col>
           )}
