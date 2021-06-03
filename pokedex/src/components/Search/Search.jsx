@@ -22,6 +22,8 @@ export default function Search({ pokemons }) {
   const searchStringHandler = (e) => {
     if (e.keyCode === 13 || e.key === "Enter") {
       showSearchResult(searchString);
+      console.log(searchString);
+      console.log(pokemons);
     } else {
       setSearchString(e.currentTarget.value);
     }
