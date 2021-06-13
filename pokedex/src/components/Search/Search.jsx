@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, FormControl, Button } from "react-bootstrap";
 
 export default function Search({ pokemons }) {
-  const [searchString, setSearchString] = useState("");
+  /* const [searchString, setSearchString] = useState("");
   const [searchedPoke, setSearchedPoke] = useState([]);
   const [searchedLoading, setSearchedLoading] = useState(null);
 
@@ -27,7 +27,7 @@ export default function Search({ pokemons }) {
     } else {
       setSearchString(e.currentTarget.value);
     }
-  };
+  }; */
 
   return (
     <div>
@@ -37,17 +37,17 @@ export default function Search({ pokemons }) {
           placeholder="Search"
           aria-label="search"
           aria-describedby="basic-addon1"
-          onKeyDown={searchStringHandler}
+          /* onKeyDown={searchStringHandler}
           onChange={searchStringHandler}
-          value={searchString}
+          value={searchString} */
           className="mr-sm-2"
         />
-        <Button variant="outline-success" onClick={handleEnterKey}>
+        <Button variant="outline-success" /* onClick={handleEnterKey} */>
           Search
         </Button>
       </Form>
-
-      <p>{searchedPoke}</p>
+      {pokemons && pokemons.map((p) => <p>p.name </p>)}
+      <p>{/* {searchedPoke} */}</p>
     </div>
   );
 }
